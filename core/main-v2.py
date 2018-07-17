@@ -57,7 +57,7 @@ def HttpClient(host, name, pwd):
     client = SshClient()
     client.connect(host, name, pwd)
     print("HttpClient-SSH Connected")
-    command = "cd ./liu/Audio;python3 AudioPlay.py audio"
+    command = "cd ./liu/Audio;python3 AudioPlay.py Init"
     print("HttpClient-SSH command:", command)
     strData = client.command(command)
     print("HttpClient-SSH-strData:", strData)
@@ -67,57 +67,144 @@ def HttpClient(host, name, pwd):
                 lock.acquire()
                 if Socket_dictMsg["flag"] == "trigger":
                     Socket_dictMsg["flag"] = "null"
-                    if Socket_dictMsg["Msg"] == "A":
+                    # 初始化后ROS被默认导航队列循环，需要清除
+                    httpReq.getDelGoalState()
 
+                    ######## 单点控制 ########
+                    if Socket_dictMsg["Msg"] == "A":
                         command = "cd ./liu/Audio;python3 AudioPlay.py audioA"
                         print("HttpClient-SSH command:", command)
                         client.command(command)
-
                         jsonData = httpReq.setCommData("addGoalQueue", "GoalQueueA", "A")
-                        print("addGoalQueue-currentGoalA-A:", jsonData)
+                        print("addGoalQueue-GoalQueueA-A:", jsonData)
                         jsonData = httpReq.setCommData("addGoalQueue", "currentGoalA", "A")
-                        print("addGoalQueue-currentGoalB-B:", jsonData)
+                        print("addGoalQueue-currentGoalA-B:", jsonData)
                         jsonData = httpReq.setCommData("updateGoalState", "currentState", "running")
                         print("updateGoalState-currentState-running:", jsonData)
                     elif Socket_dictMsg["Msg"] == "B":
-
                         command = "cd ./liu/Audio;python3 AudioPlay.py audioB"
                         print("HttpClient-SSH command:", command)
                         client.command(command)
-
                         httpReq.setCommData("addGoalQueue", "GoalQueueA", "B")
                         httpReq.setCommData("addGoalQueue", "currentGoalA", "B")
                         httpReq.setCommData("updateGoalState", "currentState", "running")
                     elif Socket_dictMsg["Msg"] == "C":
-
                         command = "cd ./liu/Audio;python3 AudioPlay.py audioC"
                         print("HttpClient-SSH command:", command)
                         client.command(command)
-
                         httpReq.setCommData("addGoalQueue", "GoalQueueA", "C")
                         httpReq.setCommData("addGoalQueue", "currentGoalA", "C")
                         httpReq.setCommData("updateGoalState", "currentState", "running")
                     elif Socket_dictMsg["Msg"] == "D":
-
                         command = "cd ./liu/Audio;python3 AudioPlay.py audioD"
                         print("HttpClient-SSH command:", command)
                         client.command(command)
-
                         httpReq.setCommData("addGoalQueue", "GoalQueueA", "D")
                         httpReq.setCommData("addGoalQueue", "currentGoalA", "D")
                         httpReq.setCommData("updateGoalState", "currentState", "running")
-                    else:
-                        print("Socket_dictMsg[\"Msg\"] no run,Msg:", Socket_dictMsg["Msg"])
+                    # else:
+                    #     print("Socket_dictMsg[\"Msg\"] no run,Msg:", Socket_dictMsg["Msg"])
+                    # currentState = "running"
+                    # while currentState == "running":
+                    #     jsonData = httpReq.getGoalState()
+                    #     strDate = jsonData['result']
+                    #     # dictData = utils.getGoalStateDataStransDict(strDate)
+                    #     listData = strDate.split("\",\"")
+                    #     currentState = listData[21]
+                    #     time.sleep(0.2)
+                    #     print("CarCurrentState:", currentState)
+                    # if currentState == "stopped":
+                    #     currentState == "null"
+                    #     command = "cd ./liu/Audio;python3 AudioPlay.py audio"+Socket_dictMsg["Msg"]+"ed"
+                    #     print("HttpClient-SSH command:", command)
+                    #     client.command(command)
 
-                    currentState = "running"
-                    while currentState == "running":
-                        jsonData = httpReq.getGoalState()
-                        strDate = jsonData['result']
-                        # dictData = utils.getGoalStateDataStransDict(strDate)
-                        listData = strDate.split("\",\"")
-                        currentState = listData[21]
-                        time.sleep(0.2)
+
+                    ######## loop ########
+                    if Socket_dictMsg["Msg"] == "loop":
+                        # jsonData = httpReq.setCommData("updateGoalState", "currentState", "stopped")
+                        # httpReq.getDelGoalState()
+                        # httpReq.setCommData("updateGoalState","mode", "order")
+                        # httpReq.setCommData("updateGoalState", "loopWay", "auto")
+
+                        httpReq.setCommData("updateGoalState", "intervalTime", "0")
+
+                        jsonData = httpReq.setCommData("addGoalQueue", "GoalQueueA", "A")
+                        # jsonData = httpReq.setCommData("addGoalQueue", "currentGoalA", "")
+                        # jsonData = httpReq.setCommData("addGoalQueue", "GoalQueueB", "")
+                        # jsonData = httpReq.setCommData("addGoalQueue", "currentGoalB", "")
+                        jsonData = httpReq.setCommData("updateGoalState", "currentState", "running")
+                        currentState = "running"
                         print("CarCurrentState:", currentState)
+                        while currentState == "running":
+                            currentState = httpReq.getGoalState()['result'].split("\",\"")[21]
+                        if currentState == "stopped":
+                            print("CarCurrentState:", currentState)
+                            currentState == "null"
+                            ####### 欢迎词 #######
+                            command = "cd ./liu/Audio;python3 AudioPlay.py LO11"
+                            print("HttpClient-SSH command:", command)
+                            client.command(command)
+
+                        jsonData = httpReq.setCommData("addGoalQueue", "GoalQueueA", "B")
+                        # jsonData = httpReq.setCommData("addGoalQueue", "currentGoalA", "B")
+                        jsonData = httpReq.setCommData("updateGoalState", "currentState", "running")
+                        currentState = "running"
+                        print("CarCurrentState:", currentState)
+                        while currentState == "running":
+                            currentState = httpReq.getGoalState()['result'].split("\",\"")[21]
+                        if currentState == "stopped":
+                            print("CarCurrentState:", currentState)
+                            currentState == "null"
+                            ####### 介绍方向三 #######
+                            command = "cd ./liu/Audio;python3 AudioPlay.py LO12"
+                            print("HttpClient-SSH command:", command)
+                            client.command(command)
+
+                        jsonData = httpReq.setCommData("addGoalQueue", "GoalQueueA", "C")
+                        # jsonData = httpReq.setCommData("addGoalQueue", "currentGoalA", "C")
+                        jsonData = httpReq.setCommData("updateGoalState", "currentState", "running")
+                        currentState = "running"
+                        print("CarCurrentState:", currentState)
+                        while currentState == "running":
+                            currentState = httpReq.getGoalState()['result'].split("\",\"")[21]
+                        if currentState == "stopped":
+                            print("CarCurrentState:", currentState)
+                            currentState == "null"
+                            ####### 介绍方向二 #######
+                            command = "cd ./liu/Audio;python3 AudioPlay.py LO13"
+                            print("HttpClient-SSH command:", command)
+                            client.command(command)
+
+                        jsonData = httpReq.setCommData("addGoalQueue", "GoalQueueA", "D")
+                        # jsonData = httpReq.setCommData("addGoalQueue", "currentGoalA", "D")
+                        jsonData = httpReq.setCommData("updateGoalState", "currentState", "running")
+                        currentState = "running"
+                        print("CarCurrentState:", currentState)
+                        while currentState == "running":
+                            currentState = httpReq.getGoalState()['result'].split("\",\"")[21]
+                        if currentState == "stopped":
+                            currentState == "null"
+                            ####### 介绍方向一 #######
+                            command = "cd ./liu/Audio;python3 AudioPlay.py LO14"
+                            print("HttpClient-SSH command:", command)
+                            client.command(command)
+
+                        ####### 返回初始位置 #######
+                        jsonData = httpReq.setCommData("addGoalQueue", "GoalQueueA", "A")
+                        # jsonData = httpReq.setCommData("addGoalQueue", "currentGoalA", "A")
+                        jsonData = httpReq.setCommData("updateGoalState", "currentState", "running")
+                        currentState = "running"
+                        print("CarCurrentState:", currentState)
+                        while currentState == "running":
+                            currentState = httpReq.getGoalState()['result'].split("\",\"")[21]
+                        if currentState == "stopped":
+                            print("CarCurrentState:", currentState)
+                            currentState == "null"
+                            ####### 结束词 #######
+                            command = "cd ./liu/Audio;python3 AudioPlay.py 912E"
+                            print("HttpClient-SSH command:", command)
+                            client.command(command)
 
             finally:
                 Socket_dictMsg["Msg"] = "null"
@@ -161,11 +248,13 @@ if __name__ == '__main__':
     username = 'eaibot'
     password = 'eaibot'
 
-    '''socket服务端口'''
-    socket_server_port = 9994
+    '''本地SSH登录信息'''
     # hostname = '0.0.0.0'
     # username = 'liu'
     # password = '123456'
+
+    '''socket服务端口'''
+    socket_server_port = 9994
 
     socket_threading = threading.Thread(target=socket_server, args=(socket_server_port, ),  name='socket')
     HttpClient_threading = threading.Thread(target=HttpClient, args=(hostname, username, password), name='HttpClient')

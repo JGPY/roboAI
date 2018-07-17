@@ -19,3 +19,7 @@ class HttpReq:
 
     def getGoalState(self):
         return get(self.url+"/getGoalState").json()
+
+    def getDelGoalState(self):
+        get(self.url+"/delGoalQueue?key=GoalQueueA")
+        # return get(self.url+"/delGoalAliases").json()
