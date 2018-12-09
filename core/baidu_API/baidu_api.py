@@ -1,4 +1,4 @@
-#Author:Bing Liu
+#Author:Jason Lou
 from aip import AipSpeech
 import time
 import pygame
@@ -12,9 +12,9 @@ from tkinter import *
 class baiduAI:
 
     """ 你的 APPID AK SK """
-    APP_ID = 'xxx'
-    API_KEY = 'xxx'
-    SECRET_KEY = 'xxx'
+    APP_ID = '10495046'
+    API_KEY = 'mCKGjyTjfwjLChoVKsspUl41'
+    SECRET_KEY = 'f8144727afbad3b0fcc10f4dea1066cf'
     client = None
 
 
