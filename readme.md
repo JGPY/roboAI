@@ -1,20 +1,23 @@
-#Name
+Name
+--
     robotAI
 
+Author information:
 ---
-##Author information:
     Author:Jason Lou
     Email:vip.iotworld@gmail.com
     Website:www.iotworld.vip
     Github:www.github.com/JGPY
 
-##Environment:
+Environment:
+---
     OS:ubuntu18.04
     Project IDE:Pycharm
     Project Interpreter:python3.6
     
     
-##Evolution:
+Evolution:
+---
     version：main_V1.*.py
         Functional_description:
             室内设置ABCD四个目标点，通过模拟鼠标和键盘自动完成ABCD四个目标点的启动设置。
@@ -36,8 +39,8 @@
             ./core/HTTP/*
             ./core/baidu_API/*
         
-        ![Image text]()
-        ![Image text]()   
+        ![Image text](https://github.com/JGPY/roboAI/blob/master/data/image/V2%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6.png)
+        ![Image text](https://github.com/JGPY/roboAI/blob/master/data/image/V2%E7%A1%AC%E4%BB%B6%E5%9B%BE.png)   
 ---              
     version：main_V3.*.py
         Dependent_file:
