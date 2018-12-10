@@ -11,7 +11,7 @@ Author information:
 
 Environment:
 ---
-    OS:ubuntu18.04
+    OS:ubuntu16.04
     Project IDE:Pycharm
     Project Interpreter:python3.6
     
