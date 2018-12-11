@@ -1,7 +1,6 @@
 #Author:Jason Lou
 from core.ssh.sshClient import*
 from core.http.ReqAPI import*
-import core.utils.dataTrans as utils
 
 import threading
 import socket
