@@ -21,7 +21,8 @@
 ## V1.*
     version：main_V1.*.py
         Functional_description:
-            室内设置ABCD四个目标点，通过模拟鼠标和键盘自动完成ABCD四个目标点的启动设置。
+            1. Set A、B、C and D four target points indoors。
+            2. Four target points are set and started automatically on the rviz interface by simulating the mouse and keyboard.
         Dependent_file:
             ./core/AutoGUI/*
             ./core/Socket/*
@@ -32,10 +33,12 @@
 ## V2.*            
     version：main_V2.*.py
         Functional_description:
-            室内设置ABCD四个目标点。
-            通过手机人机交互识别指令后，通过socket将指令传输给本系统程序。
-            通过HTT调用WebAPI自动完成ABCD四个目标点的启动设置,
-            并在到达每个目标点后通过SSH连接下位机调用脚本播放一段语音，再进行下一个目标点。
+            1. Set four A、B、C and D target points indoors.
+            2. After the mobile phone human-machine voice interactive recognition instruction, 
+            the command is transmitted to the system program through the socket.
+            3. Automatically complete the setting and startup of four target points by calling the API via HTTP.
+            4. And after reaching each target point, the system program calls the script to play a voice through 
+            the SSH connection to the lower computer, and then proceeds to the next target point.
         Dependent_file:
             ./core/Audio/*
             ./core/Socket/*
