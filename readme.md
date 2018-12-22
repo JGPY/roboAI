@@ -23,7 +23,7 @@
         Functional_description:
             1. Set A、B、C and D four target points indoors。
             2. Four target points are set and started automatically on the rviz interface by 
-            simulating the mouse and keyboard.
+               simulating the mouse and keyboard.
         Dependent_file:
             ./core/AutoGUI/*
             ./core/Socket/*
@@ -36,12 +36,12 @@
         Functional_description:
             1. Set four A、B、C and D target points indoors.
             2. After the mobile phone human-machine voice interactive recognition instruction, 
-            the command is transmitted to the system program through the socket.
+               the command is transmitted to the system program through the socket.
             3. Automatically complete the setting and startup of four target points by calling 
-            the API via HTTP.
+               the API via HTTP.
             4. And after reaching each target point, the system program calls the script to play 
-            a voice through the SSH connection to the lower computer, and then proceeds to the 
-            next target point.
+               a voice through the SSH connection to the lower computer, and then proceeds to the 
+               next target point.
         Dependent_file:
             ./core/Audio/*
             ./core/Socket/*
