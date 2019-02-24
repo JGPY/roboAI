@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     name = ""
     try:
-        name = sys.argv[1]
+        name = sys.argv[1]  # sys.argv[0]为自身脚本名称
     except Exception:
         print("运行脚本时需传入参数，传入的参数为当前目录下的音频文件名,音频格式为mp3格式")
         print(Exception)
