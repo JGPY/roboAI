@@ -49,8 +49,8 @@
             ./core/HTTP/*
             ./core/baidu_API/*
 ### 程序框架图和硬件实物图     
- ![Image text](https://github.com/JGPY/roboAI/blob/master/data/image/V2%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6.png)
- ![Image text](https://github.com/JGPY/roboAI/blob/master/data/image/V2%E7%A1%AC%E4%BB%B6%E5%9B%BE.png)   
+ ![Image text](./data/image/V2程序框架.png)
+ ![Image text](./data/image/V2硬件图.png)   
 
 
 ---
