@@ -7,6 +7,6 @@ pyaudio库，使用这个可以进行录音，播放，生成wav文件等等。
         如果报错请使用如下命令安装
         sudo apt-get install python3-pyaudio
 ---    
-    此脚本放下位机，路径为:
+    此脚本放下位机(树莓派)，路径为:
         /home/eaibot/liu/Audio/
     
